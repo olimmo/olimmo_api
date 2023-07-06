@@ -22,9 +22,6 @@ class Property(models.Model):
         max_length=60, unique=True, validators=[MinLengthValidator(1)]
     )
 
-    def __str__(self):
-        return self.title
-
     @property
     def full_address(self):
         address_parts = [
@@ -33,3 +30,6 @@ class Property(models.Model):
             if part
         ]
         return " ".join(address_parts)
+
+    def __str__(self):
+        return str(vars(self))
