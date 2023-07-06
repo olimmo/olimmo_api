@@ -9,13 +9,9 @@ class Property(models.Model):
         validators=[
             MinValueValidator(0),
             MaxValueValidator(100000),
-        ]
+        ],
     )
-    title = models.CharField(
-        max_length=60,
-        unique=True,
-        validators=[MinLengthValidator(1)]
-    )
+    title = models.CharField(max_length=60, unique=True, validators=[MinLengthValidator(1)])
 
     def __str__(self):
         return self.title

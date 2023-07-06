@@ -4,19 +4,18 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('myapi', '0003_remove_hero_alias'),
+        ("myapi", "0003_remove_hero_alias"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Hero',
-            new_name='Property',
+            old_name="Hero",
+            new_name="Property",
         ),
         migrations.RenameField(
-            model_name='property',
-            old_name='name',
-            new_name='title',
+            model_name="property",
+            old_name="name",
+            new_name="title",
         ),
     ]
