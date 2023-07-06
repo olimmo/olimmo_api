@@ -1,6 +1,7 @@
 # Load all models
 import django
 from django.apps import apps
+
 django.setup()
 all_models = apps.get_models()
 for model in all_models:

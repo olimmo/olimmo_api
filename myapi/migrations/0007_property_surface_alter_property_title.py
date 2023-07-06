@@ -5,20 +5,31 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('myapi', '0006_initial'),
+        ("myapi", "0006_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='property',
-            name='surface',
-            field=models.IntegerField(default=0, validators=[django.core.validators.MinLengthValidator(1), django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(100000), django.core.validators.validate_integer]),
+            model_name="property",
+            name="surface",
+            field=models.IntegerField(
+                default=0,
+                validators=[
+                    django.core.validators.MinLengthValidator(1),
+                    django.core.validators.MinValueValidator(0),
+                    django.core.validators.MaxValueValidator(100000),
+                    django.core.validators.validate_integer,
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='property',
-            name='title',
-            field=models.CharField(max_length=60, unique=True, validators=[django.core.validators.MinLengthValidator(1)]),
+            model_name="property",
+            name="title",
+            field=models.CharField(
+                max_length=60,
+                unique=True,
+                validators=[django.core.validators.MinLengthValidator(1)],
+            ),
         ),
     ]

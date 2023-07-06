@@ -7,4 +7,4 @@ from .models import Property
 class PropertySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Property
-        fields = ('id', 'title', 'city')
+        fields = ("id", "title", "city")
