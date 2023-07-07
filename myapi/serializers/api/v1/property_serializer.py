@@ -1,7 +1,7 @@
 # serializers.py
 from rest_framework import serializers
 
-from .models import Property
+from myapi.models import Property
 
 
 class PropertySerializer(serializers.HyperlinkedModelSerializer):
@@ -11,7 +11,7 @@ class PropertySerializer(serializers.HyperlinkedModelSerializer):
         model = Property
         fields = ("id", "city", "postal_code", "surface", "title", "is_big")
 
-    # CUSTOM FIELDS
+    # CUSTOM SERIALIZER FIELDS
     def get_is_big(self, obj):
         return obj.surface > 1000
 
