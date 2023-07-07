@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .helpers.response import handle_serialized_data 
-from myapi.models import Property 
+from .helpers.response import handle_serialized_data
+from myapi.models import Property
 from myapi.serializers import PropertySerializer
+
 
 class PropertyList(APIView):
     def get(self, request, format=None):
