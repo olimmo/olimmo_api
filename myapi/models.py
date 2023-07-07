@@ -22,6 +22,14 @@ class Property(models.Model):
         max_length=60, unique=True, validators=[MinLengthValidator(1)]
     )
 
+    # custom validator
+    def clean(self):
+        if self.country and not self.city:
+            raise models.ValidationError(
+                "City field is mandatory when country field is filled."
+            )
+
+    # custom property
     @property
     def full_address(self):
         address_parts = [
