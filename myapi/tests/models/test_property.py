@@ -1,7 +1,7 @@
 import pytest
 from myapi.models import Property
 from django.core.exceptions import ValidationError
-from myapi.tests.factories import PropertyFactory
+from myapi.tests.factories import PropertyFactory, SellerFactory
 
 
 @pytest.fixture
@@ -14,6 +14,15 @@ def test_property_creation(property):
     assert property.id is not None
     assert property.surface is not None
     assert property.title is not None
+
+
+# Relationships
+def test_property_belongs_to_seller():
+    seller = SellerFactory()
+    property = PropertyFactory(seller=seller)
+
+    assert property.seller == seller
+    assert seller.properties.first() == property
 
 
 # Validations
