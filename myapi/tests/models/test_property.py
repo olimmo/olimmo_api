@@ -1,6 +1,19 @@
 import pytest
+from myapi.models import Property
 from django.core.exceptions import ValidationError
 from myapi.tests.factories import PropertyFactory
+
+
+@pytest.fixture
+def property():
+    return PropertyFactory()
+
+
+def test_property_creation(property):
+    assert isinstance(property, Property)
+    assert property.id is not None
+    assert property.surface is not None
+    assert property.title is not None
 
 
 # Validations

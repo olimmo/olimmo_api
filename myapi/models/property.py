@@ -1,9 +1,12 @@
+from django.db import models
+
+from .seller import Seller
+
 from django.core.validators import (
     MinLengthValidator,
     MaxValueValidator,
     MinValueValidator,
 )
-from django.db import models
 
 
 class Property(models.Model):
@@ -22,14 +25,22 @@ class Property(models.Model):
         max_length=60, unique=True, validators=[MinLengthValidator(1)]
     )
 
-    # custom validator
+    # RELATIONSHIPS
+    seller = models.ForeignKey(
+        Seller,
+        on_delete=models.CASCADE,
+        related_name="properties",
+        null=True,
+    )
+
+    # CUSTOM VALIDATIONS
     def clean(self):
         if self.country and not self.city:
             raise models.ValidationError(
                 "City field is mandatory when country field is filled."
             )
 
-    # custom property
+    # CUSTOM PROPERTIES
     @property
     def full_address(self):
         address_parts = [
