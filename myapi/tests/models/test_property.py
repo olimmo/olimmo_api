@@ -43,7 +43,7 @@ def test_title_validation():
 
 
 # Properties
-def test_full_address_with_all_attributes():
+def test_full_address_with_all_components():
     property = PropertyFactory(
         address="123 Street", city="City", postal_code="12345", country="Country"
     )
@@ -51,7 +51,7 @@ def test_full_address_with_all_attributes():
     assert property.full_address == expected_address
 
 
-def test_full_address_with_null_attributes():
+def test_full_address_with_null_components():
     property = PropertyFactory(
         address="123 Street", city="City", postal_code=None, country=None
     )
