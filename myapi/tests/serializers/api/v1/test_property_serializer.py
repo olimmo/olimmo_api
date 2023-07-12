@@ -58,7 +58,6 @@ def test_property_serializer_custom_fields():
     assert serializer.data["is_big"]
 
 
-@pytest.mark.django_db
 def test_property_serializer_save():
     property_data = {
         "city": "New York",

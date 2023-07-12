@@ -33,7 +33,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python manage.py test
+            pytest
 workflows:
   version: 2
   build-and-test:

@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 # Test the creation of a Seller instance
 def test_seller_creation():
-    seller = SellerFactory()
+    SellerFactory()
     assert Seller.objects.count() == 1
 
 
