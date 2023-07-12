@@ -74,6 +74,7 @@ Pygments==2.15.1
 pyjnius==1.5.0
 pyOpenSSL==23.2.0
 pytest==7.4.0
+pytest-django==4.5.2
 python-dateutil==2.8.2
 python-decouple==3.8
 pytz==2023.3
@@ -98,7 +99,6 @@ traitlets==5.9.0
 trove-classifiers==2023.7.6
 typing_extensions==4.7.1
 urllib3==2.0.3
-urllib3-secure-extra==0.1.0
 wcwidth==0.2.6
 widgetsnbextension==4.0.8
 yarg==0.1.9
