@@ -29,6 +29,7 @@ factory-boy==3.2.1
 Faker==18.13.0
 flake8==6.0.0
 funcsigs==1.0.2
+gunicorn==20.1.0
 HTMLParser==0.0.2
 idna==3.4
 imagesize==1.4.1
@@ -77,6 +78,7 @@ pytest==7.4.0
 pytest-django==4.5.2
 python-dateutil==2.8.2
 python-decouple==3.8
+python-dotenv==1.0.0
 pytz==2023.3
 pyzmq==25.1.0
 railroad==0.5.0

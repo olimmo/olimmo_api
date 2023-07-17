@@ -72,6 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "olimmo.wsgi.application"
 
+import django_heroku
+django_heroku.settings(locals())
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
