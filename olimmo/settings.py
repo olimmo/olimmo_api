@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-t4bck3gkwo@v7z*tb26)hyh-qh-_4!c4cvh-$vfg$$n^9axiv7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['host.docker.internal']
 
 
 # Application definition
@@ -71,9 +71,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "olimmo.wsgi.application"
-
-import django_heroku
-django_heroku.settings(locals())
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
