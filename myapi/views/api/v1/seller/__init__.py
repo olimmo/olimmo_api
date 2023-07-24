@@ -1,1 +1,1 @@
-from .property_views import PropertyListView, PropertyDetailView
+from .property_views import BaseView, PropertyListView, PropertyDetailView

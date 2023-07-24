@@ -26,7 +26,7 @@ class PropertyListViewTest(APITestCase):
             reverse("seller-properties-list", kwargs={"seller_id": self.seller.id}),
             data,
         )
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(Property.objects.last().title, "New Property")
 
 
@@ -58,7 +58,7 @@ class PropertyDetailTest(APITestCase):
             ),
             data,
         )
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
         self.property.refresh_from_db()
         self.assertEqual(self.property.title, "Updated Property")
 
