@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 from myapi.models import Property
 from myapi.serializers.api.v1 import PropertySerializer
-from myapi.views.api.v1.helpers.response import render_serialized_data
 
 
 class PropertyListView(APIView):
@@ -17,7 +16,9 @@ class PropertyListView(APIView):
 
     def post(self, request, format=None):
         serializer = PropertySerializer(data=request.data)
-        return render_serialized_data(serializer)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class PropertyDetailView(APIView):
@@ -32,7 +33,9 @@ class PropertyDetailView(APIView):
     def put(self, request, pk, format=None):
         property = self.get_object(pk)
         serializer = PropertySerializer(property, data=request.data)
-        return render_serialized_data(serializer)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, pk, format=None):
         property = self.get_object(pk)
