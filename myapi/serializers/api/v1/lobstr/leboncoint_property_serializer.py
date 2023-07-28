@@ -4,7 +4,7 @@ from rest_framework import serializers
 from myapi.models import Property
 
 
-class PropertySerializer(serializers.ModelSerializer):
+class LeboncoinPropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = Property
-        fields = ("id", "city", "surface", "title")
+        fields = ("id", "city", "postal_code", "surface", "title")

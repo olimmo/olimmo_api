@@ -1,0 +1,1 @@
+from .leboncoin_property_serializer import LeboncoinPropertySerializer

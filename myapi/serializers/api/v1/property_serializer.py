@@ -4,7 +4,7 @@ from rest_framework import serializers
 from myapi.models import Property
 
 
-class PropertySerializer(serializers.HyperlinkedModelSerializer):
+class PropertySerializer(serializers.ModelSerializer):
     is_big = serializers.SerializerMethodField()
 
     class Meta:

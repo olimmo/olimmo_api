@@ -1,0 +1,1 @@
+from .leboncoint_property_views import LeboncoinPropertyListView
