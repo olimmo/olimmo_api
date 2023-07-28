@@ -4,16 +4,16 @@ from rest_framework import serializers
 from myapi.models import Property
 
 
-class PropertySerializer(serializers.HyperlinkedModelSerializer):
-    is_big = serializers.SerializerMethodField()
+class PropertySerializer(serializers.ModelSerializer):
+    full_address = serializers.SerializerMethodField()
 
     class Meta:
         model = Property
-        fields = ("id", "city", "postal_code", "surface", "title", "is_big")
+        fields = "__all__"
 
     # CUSTOM SERIALIZER FIELDS
-    def get_is_big(self, obj):
-        return obj.surface > 1000
+    def get_full_address(self, obj):
+        return " ".join([obj.address, obj.city, obj.postal_code, obj.country])
 
     # SERIALIZE VALIDATIONS
     def validate_surface(self, value):

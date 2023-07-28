@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from myapi.models import Seller
-from myapi.serializers.api.v1.seller import PropertySerializer
+from myapi.serializers.api.v1.seller.property_serializer import PropertySerializer
 from .base_views import BaseView
 
 

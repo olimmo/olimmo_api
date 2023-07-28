@@ -1,5 +1,5 @@
 import pytest
-from myapi.serializers.api.v1.seller import PropertySerializer
+from myapi.serializers.api.v1.seller.property_serializer import PropertySerializer
 from myapi.models import Property
 
 

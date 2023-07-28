@@ -10,8 +10,9 @@ for model in all_models:
 # ------------------------------------
 print("Welcome to Python!")
 
-maison = Property.objects.get(id=1)
 qq = exit
+
+maison = Property.objects.last()
 
 
 # pluck(Property.objects.all(), 'title')
