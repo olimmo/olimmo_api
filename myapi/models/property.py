@@ -27,10 +27,7 @@ class Property(models.Model):
 
     # RELATIONSHIPS
     seller = models.ForeignKey(
-        Seller,
-        on_delete=models.CASCADE,
-        related_name="properties",
-        null=True,
+        Seller, on_delete=models.CASCADE, related_name="properties", null=True
     )
 
     # CUSTOM VALIDATIONS
