@@ -1,5 +1,5 @@
 import pytest
-from myapi.serializers.api.v1 import PropertySerializer
+from myapi.serializers.api.v1.property_serializer import PropertySerializer
 from myapi.models import Property
 from myapi.tests.factories import PropertyFactory
 
@@ -38,6 +38,7 @@ def test_property_serializer_invalid_surface():
 
 def test_property_serializer_invalid_postal_code():
     property_data = {
+        "address": "123 Main Street",
         "city": "New York",
         "postal_code": "1234567890abcdefghij",  # Invalid postal code length
         "surface": 1500,
@@ -53,13 +54,14 @@ def test_property_serializer_invalid_postal_code():
 
 
 def test_property_serializer_custom_fields():
-    property = PropertyFactory(surface=2000)  # Create a Property using Factory Boy
+    property = PropertyFactory()  # Create a Property using Factory Boy
     serializer = PropertySerializer(property)
-    assert serializer.data["is_big"]
+    assert serializer.data["full_address"]
 
 
 def test_property_serializer_save():
     property_data = {
+        "address": "123 Main Street",
         "city": "New York",
         "postal_code": "12345",
         "surface": 1500,
@@ -69,6 +71,7 @@ def test_property_serializer_save():
     assert serializer.is_valid()
     property = serializer.save()  # Save the validated data
     assert Property.objects.count() == 1
+    assert property.address == "123 Main Street"
     assert property.city == "New York"
     assert property.postal_code == "12345"
     assert property.surface == 1500

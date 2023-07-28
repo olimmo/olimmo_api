@@ -14,6 +14,7 @@ qq = exit
 
 maison = Property.objects.last()
 
+
 # pluck(Property.objects.all(), 'title')
 def pluck(objects, attribute):
     return list(map(lambda obj: getattr(obj, attribute), objects))

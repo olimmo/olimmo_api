@@ -18,7 +18,10 @@ class PropertyListViewTest(APITestCase):
 
     def test_post_property(self):
         data = {
+            "address": "34 rue de Bellefond",
             "city": "London",
+            "country": "UK",
+            "postal_code": "1234567890",
             "surface": 5000,
             "title": "New Property",
         }

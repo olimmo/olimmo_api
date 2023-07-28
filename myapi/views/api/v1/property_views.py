@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from myapi.models import Property
-from myapi.serializers.api.v1 import PropertySerializer
+from myapi.serializers.api.v1.property_serializer import PropertySerializer
 
 
 class PropertyListView(APIView):

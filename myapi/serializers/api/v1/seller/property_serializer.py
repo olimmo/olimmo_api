@@ -7,4 +7,4 @@ from myapi.models import Property
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = Property
-        fields = ("id", "city", "surface", "title")
+        fields = "__all__"
