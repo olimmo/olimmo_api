@@ -1,28 +1,34 @@
-from django.urls import reverse
-from rest_framework.test import APITestCase
-from myapi.tests.factories import PropertyFactory
-from myapi.models import Property
+import pytest
+from unittest.mock import patch
 
 
-class ExternalPropertyListViewTest(APITestCase):
-    def setUp(self):
-        self.property = PropertyFactory.create()
+# Fixtures
+@pytest.fixture
+def url():
+    return "/api/v1/lobstr/leboncoin/external_properties"
 
-    def test_post_property(self):
-        data = {
-            "title": "New Property",
-            "address": "12 rue de la paix",
-            "city": "London",
-            "country": "UK",
-            "surface": 1001,
-            "postal_code": "883833",
-            "currency": "EUR",
-            "description": "Test from example",
-            "region": "Ile de france",
-            "source": "leBoncoin",
-            "source_id": "jejejejh",
-            "url": "https://www.ejejej.com",
-        }
-        response = self.client.post(reverse("property-list"), data)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(Property.objects.last().title, "New Property")
+
+@pytest.fixture()
+def mocked_task():
+    with patch(
+        "myapi.views.api.v1.lobstr.leboncoin.external_property_views"
+        ".ExternalPropertyCreateTask.delay"
+    ) as mock_delay:
+        yield mock_delay
+
+
+# Test cases
+def test_external_property_create_view_no_run_id(mocked_task, client, url):
+    response = client.post(url, data={"id": ""})
+
+    assert response.status_code == 400
+    assert not response.data
+    assert not mocked_task.called
+
+
+def test_external_property_create_view(mocked_task, client, url):
+    response = client.post(url, data={"id": "1234567890"})
+
+    assert response.status_code == 202
+    assert response.data == {"status": "Job started"}
+    assert mocked_task.called

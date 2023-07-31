@@ -8,8 +8,10 @@ from django.core.validators import (
     MinValueValidator,
 )
 
+from . import BaseModel
 
-class Property(models.Model):
+
+class Property(BaseModel):
     address = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=30, null=True)
     country = models.CharField(max_length=30, null=True)

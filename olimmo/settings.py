@@ -54,6 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "olimmo.urls"
 
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_ALWAYS_EAGER = True
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
