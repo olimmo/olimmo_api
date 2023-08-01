@@ -1,3 +1,5 @@
+from .base_model import BaseModel
+
 from .external_property import ExternalProperty
 from .photo import Photo
 from .property import Property

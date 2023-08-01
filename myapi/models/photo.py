@@ -9,12 +9,14 @@ from django.core.validators import (
     URLValidator,
 )
 
+from . import BaseModel
 
-class Photo(models.Model):
+
+class Photo(BaseModel):
     position = models.IntegerField(
-        default=0,
+        default=1,
         validators=[
-            MinValueValidator(0),
+            MinValueValidator(1),
             MaxValueValidator(1000),
         ],
     )
@@ -25,7 +27,7 @@ class Photo(models.Model):
     external_property = models.ForeignKey(
         ExternalProperty,
         on_delete=models.CASCADE,
-        related_name="external_properties",
+        related_name="photos",
         null=True,
     )
 
