@@ -306,7 +306,8 @@ def test_seller_email_is_an_email_format():
     with pytest.raises(ValidationError, match="Enter a valid email address."):
         external_property = ExternalPropertyFactory(seller_email="WrongFormat")
         external_property.full_clean()
-    
+
+
 def test_seller_email_can_be_blank():
     external_property = ExternalPropertyFactory.build(seller_email=None)
     external_property.clean_and_save()

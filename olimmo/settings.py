@@ -52,6 +52,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+AUTH_USER_MODEL = "myapi.CustomUser"
+
 ROOT_URLCONF = "olimmo.urls"
 
 CELERY_BROKER_URL = "redis://localhost:6379/0"
