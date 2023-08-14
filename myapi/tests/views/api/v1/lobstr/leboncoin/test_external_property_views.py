@@ -12,7 +12,7 @@ def url():
 def mocked_task():
     with patch(
         "myapi.views.api.v1.lobstr.leboncoin.external_property_views"
-        ".ExternalPropertyCreateTask.delay"
+        ".create_external_property_task.delay"
     ) as mock_delay:
         yield mock_delay
 
