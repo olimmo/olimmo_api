@@ -14,6 +14,9 @@ def test_photo_creation(photo):
     assert photo.id is not None
     assert photo.position is not None
     assert photo.url is not None
+    assert photo.content_object is not None
+    assert photo.content_type is not None
+    assert photo.object_id is not None
 
 
 def test_position_is_greater_or_equal_to_0():
@@ -36,8 +39,8 @@ def test_position_is_not_null():
 
 def test_url_is_not_null():
     with pytest.raises(ValidationError, match="cannot be null."):
-        external_property = PhotoFactory.build(url=None)
-        external_property.full_clean()
+        photo = PhotoFactory.build(url=None)
+        photo.full_clean()
 
 
 def test_url_is_not_blank():
@@ -50,8 +53,3 @@ def test_url_is_a_url_format():
     with pytest.raises(ValidationError, match="Enter a valid URL."):
         photo = PhotoFactory(url="not a valid url")
         photo.full_clean()
-
-
-def test_photo_has_external_property():
-    photo = PhotoFactory()
-    assert photo.external_property is not None

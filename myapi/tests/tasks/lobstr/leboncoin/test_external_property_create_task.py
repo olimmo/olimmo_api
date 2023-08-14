@@ -1,6 +1,8 @@
 # test_tasks.py
 
 from unittest.mock import patch
+from django.contrib.contenttypes.models import ContentType
+
 from myapi.tasks.lobstr.leboncoin.external_property_create_task import (
     ExternalPropertyCreateTask,
 )
@@ -118,7 +120,8 @@ class TestExternalPropertyCreateTask:
         ExternalPropertyCreateTask("run_id")
 
         external_property = ExternalProperty.objects.first()
-        photos = Photo.objects.filter(external_property=external_property)
+        external_property_content_type = ContentType.objects.get_for_model(ExternalProperty)
+        photos = Photo.objects.filter(content_type=external_property_content_type, object_id=external_property.id)
         assert photos.count() == 2
         assert photos[0].url == "https://img1.jpg"
         assert photos[1].url == "https://img2.jpg"

@@ -34,7 +34,7 @@ def create_photos(leboncoin_property, external_property):
         attributes = {
             "url": url,
             "position": index + 1,
-            "external_property_id": external_property.id,
+            "content_object": external_property,
         }
 
         photo = Photo(**attributes)

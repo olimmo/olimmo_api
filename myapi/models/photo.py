@@ -1,6 +1,6 @@
 from django.db import models
-
-from .external_property import ExternalProperty
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 from django.core.validators import (
     MinLengthValidator,
@@ -23,13 +23,10 @@ class Photo(BaseModel):
 
     url = models.CharField(validators=[MinLengthValidator(1), URLValidator()])
 
-    # RELATIONSHIPS
-    external_property = models.ForeignKey(
-        ExternalProperty,
-        on_delete=models.CASCADE,
-        related_name="photos",
-        null=True,
-    )
-
+    # Relationships
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    
     def __str__(self):
         return str(vars(self))
