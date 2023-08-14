@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.contrib.contenttypes.fields import GenericRelation
+
 from django.core.validators import (
     MaxValueValidator,
     MinLengthValidator,
@@ -8,6 +10,7 @@ from django.core.validators import (
 )
 
 from . import BaseModel
+from .photo import Photo
 
 
 class ExternalProperty(BaseModel):
@@ -119,6 +122,9 @@ class ExternalProperty(BaseModel):
     title = models.CharField(validators=[MinLengthValidator(1)])
 
     url = models.CharField(validators=[MinLengthValidator(1), URLValidator()])
+    
+    # Relationships
+    photos = GenericRelation(Photo)
 
     def __str__(self):
         return str(vars(self))

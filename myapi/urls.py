@@ -21,27 +21,27 @@ urlpatterns = [
                 path(
                     "properties",
                     PropertyListView.as_view(),
-                    name="api:v1:seller:property-detail",
+                    name="api_v1_seller_property-detail",
                 ),
                 path(
                     "properties/<int:property_id>",
                     PropertyDetailView.as_view(),
-                    name="api:v1:property-detail",
+                    name="api_v1_property-detail",
                 ),
                 path(
                     "seller/<int:seller_id>/properties",
                     SellerPropertyListView.as_view(),
-                    name="api:v1:seller:property-detail",
+                    name="api_v1_seller_property-detail",
                 ),
                 path(
                     "seller/<int:seller_id>/properties/<int:property_id>",
                     SellerPropertyDetailView.as_view(),
-                    name="api:v1:seller:property-detail",
+                    name="api_v1_seller_property-detail",
                 ),
                 path(
                     "lobstr/leboncoin/external_properties",
                     LeboncoinExternalPropertyListView.as_view(),
-                    name="api:v1:lobstr:leboncoin:external-properties-list",
+                    name="api_v1_lobstr_leboncoin_external-properties-list",
                 ),
             ]
         ),
