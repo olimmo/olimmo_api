@@ -69,14 +69,14 @@ def test_energy_rate_inclusion():
 
 
 def test_energy_rate_can_be_none():
-    instance = ExternalPropertyFactory.build(energy_rate=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(energy_rate=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
 def test_energy_rate_can_be_blank():
-    instance = ExternalPropertyFactory.build(energy_rate="")
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(energy_rate="")
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -111,8 +111,8 @@ def test_floor_number_is_less_than_100():
 
 
 def test_floor_number_can_be_none():
-    instance = ExternalPropertyFactory.build(floor_number=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(floor_number=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -159,14 +159,14 @@ def test_greenhouse_gas_inclusion():
 
 
 def test_greenhouse_gas_can_be_none():
-    instance = ExternalPropertyFactory.build(greenhouse_gas=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(greenhouse_gas=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
 def test_greenhouse_gas_can_be_blank():
-    instance = ExternalPropertyFactory.build(greenhouse_gas="")
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(greenhouse_gas="")
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -183,8 +183,8 @@ def test_nb_floors_building_is_less_than_100():
 
 
 def test_nb_floors_building_can_be_none():
-    instance = ExternalPropertyFactory.build(nb_floors_building=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(nb_floors_building=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -201,8 +201,8 @@ def test_nb_parkings_is_less_than_100():
 
 
 def test_nb_parkings_can_be_none():
-    instance = ExternalPropertyFactory.build(nb_parkings=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(nb_parkings=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -213,8 +213,8 @@ def test_nb_bedrooms_is_greater_or_equal_than_0():
 
 
 def test_nb_bedrooms_can_be_none():
-    instance = ExternalPropertyFactory.build(nb_bedrooms=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(nb_bedrooms=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -243,14 +243,14 @@ def test_nb_rooms_is_less_than_100():
 
 
 def test_outside_access_can_be_none():
-    instance = ExternalPropertyFactory.build(outside_access=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(outside_access=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
 def test_outside_access_can_be_blank():
-    instance = ExternalPropertyFactory.build(outside_access="")
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(outside_access="")
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -285,26 +285,31 @@ def test_property_type_inclusion():
 
 
 def test_region_is_not_blank():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="cannot be blank."):
         external_property = ExternalPropertyFactory(region="")
         external_property.full_clean()
 
 
 def test_seller_phone_can_be_blank():
-    instance = ExternalPropertyFactory.build(seller_phone=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(seller_phone=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
 def test_seller_name_can_be_blank():
-    instance = ExternalPropertyFactory.build(seller_name=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(seller_name=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
+def test_seller_email_is_an_email_format():
+    with pytest.raises(ValidationError, match="Enter a valid email address."):
+        external_property = ExternalPropertyFactory(seller_email="WrongFormat")
+        external_property.full_clean()
+    
 def test_seller_email_can_be_blank():
-    instance = ExternalPropertyFactory.build(seller_email=None)
-    instance.clean_and_save()
+    external_property = ExternalPropertyFactory.build(seller_email=None)
+    external_property.clean_and_save()
     assert ExternalProperty.objects.count() == 1
 
 
@@ -370,7 +375,7 @@ def test_surface_is_not_null():
 
 
 def test_title_is_not_blank():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="cannot be blank."):
         external_property = ExternalPropertyFactory(title="")
         external_property.full_clean()
 
