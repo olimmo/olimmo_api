@@ -104,7 +104,7 @@ class ExternalProperty(BaseModel):
     region = models.CharField(validators=[MinLengthValidator(1)])
     seller_phone = models.CharField(null=True, blank=True)
     seller_name = models.CharField(null=True, blank=True)
-    seller_email = models.CharField(null=True, blank=True)
+    seller_email = models.EmailField(null=True, blank=True)
     source = models.CharField(
         validators=[MinLengthValidator(1)], choices=SOURCE_CHOICES, default="Leboncoin"
     )
