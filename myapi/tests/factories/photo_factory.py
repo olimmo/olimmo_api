@@ -14,6 +14,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
     url = factory.Sequence(lambda n: f"https://www.{n}.com")
 
     content_type = factory.LazyAttribute(
-        lambda o: ContentType.objects.get_for_model(o.content_object))
-    object_id = factory.SelfAttribute('content_object.pk')
+        lambda o: ContentType.objects.get_for_model(o.content_object)
+    )
+    object_id = factory.SelfAttribute("content_object.pk")
     content_object = factory.SubFactory(ExternalPropertyFactory)

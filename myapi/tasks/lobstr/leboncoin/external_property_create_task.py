@@ -9,7 +9,7 @@ from myapi.services.lobstr.entities.leboncoin_property_attribute_mapper import (
 
 
 @shared_task
-def ExternalPropertyCreateTask(run_id):
+def create_external_property_task(run_id):
     property_resuls = LobstrPropertyFetcher(run_id).get_properties()
     if not property_resuls:
         return None

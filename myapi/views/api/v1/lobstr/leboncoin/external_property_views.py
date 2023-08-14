@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 
 from myapi.tasks.lobstr.leboncoin.external_property_create_task import (
-    ExternalPropertyCreateTask,
+    create_external_property_task,
 )
 
 
@@ -13,6 +13,6 @@ class ExternalPropertyListView(APIView):
         run_id = request.data.get("id")
         if not run_id:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        ExternalPropertyCreateTask.delay(run_id)
+        create_external_property_task.delay(run_id)
 
         return Response({"status": "Job started"}, status=status.HTTP_202_ACCEPTED)

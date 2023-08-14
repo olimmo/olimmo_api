@@ -4,12 +4,12 @@ from unittest.mock import patch
 from django.contrib.contenttypes.models import ContentType
 
 from myapi.tasks.lobstr.leboncoin.external_property_create_task import (
-    ExternalPropertyCreateTask,
+    create_external_property_task,
 )
 from myapi.models import ExternalProperty, Photo
 
 
-class TestExternalPropertyCreateTask:
+def create_external_property_task(run_id):
     leboncoin_properties = [
         {
             "id": "ce49cda8afad013d3f4391d360844420",
@@ -66,7 +66,7 @@ class TestExternalPropertyCreateTask:
     )
     def test_external_property_create_task(self, mock_get_properties, db):
         mock_get_properties.return_value = self.leboncoin_properties
-        ExternalPropertyCreateTask("run_id")
+        create_external_property_task("run_id")
 
         assert (
             ExternalProperty.objects.filter(
@@ -117,11 +117,15 @@ class TestExternalPropertyCreateTask:
     )
     def test_create_photos(self, mock_get_properties, db):
         mock_get_properties.return_value = self.leboncoin_properties
-        ExternalPropertyCreateTask("run_id")
+        create_external_property_task("run_id")
 
         external_property = ExternalProperty.objects.first()
-        external_property_content_type = ContentType.objects.get_for_model(ExternalProperty)
-        photos = Photo.objects.filter(content_type=external_property_content_type, object_id=external_property.id)
+        external_property_content_type = ContentType.objects.get_for_model(
+            ExternalProperty
+        )
+        photos = Photo.objects.filter(
+            content_type=external_property_content_type, object_id=external_property.id
+        )
         assert photos.count() == 2
         assert photos[0].url == "https://img1.jpg"
         assert photos[1].url == "https://img2.jpg"
@@ -132,7 +136,7 @@ class TestExternalPropertyCreateTask:
     )
     def test_external_property_create_task_no_properties(self, mock_get_properties, db):
         mock_get_properties.return_value = None
-        result = ExternalPropertyCreateTask("run_id")
+        result = create_external_property_task("run_id")
 
         assert result is None
         assert ExternalProperty.objects.count() == 0

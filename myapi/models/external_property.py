@@ -122,7 +122,7 @@ class ExternalProperty(BaseModel):
     title = models.CharField(validators=[MinLengthValidator(1)])
 
     url = models.CharField(validators=[MinLengthValidator(1), URLValidator()])
-    
+
     # Relationships
     photos = GenericRelation(Photo)
 
