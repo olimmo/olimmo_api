@@ -1,34 +1,30 @@
-import pytest
+from rest_framework.test import APIClient
 from unittest.mock import patch
 
 
-# Fixtures
-@pytest.fixture
-def url():
-    return "/api/v1/lobstr/leboncoin/external_properties"
+class TestExternalPropertyListView:
+    def setup_method(self):
+        self.client = APIClient()
 
+    @patch(
+        "myapi.tasks.lobstr.leboncoin.external_property_create_task."
+        "create_external_property_task.delay"
+    )
+    def test_post_with_id(self, mock_task):
+        response = self.client.post(
+            "/api/v1/lobstr/leboncoin/external_properties/", data={"id": "12345"}
+        )
 
-@pytest.fixture()
-def mocked_task():
-    with patch(
-        "myapi.views.api.v1.lobstr.leboncoin.external_property_views"
+        mock_task.assert_called_once_with("12345")
+        assert response.status_code == 202
+        assert response.data == {"status": "Job started"}
+
+    @patch(
+        "myapi.tasks.lobstr.leboncoin.external_property_create_task"
         ".create_external_property_task.delay"
-    ) as mock_delay:
-        yield mock_delay
+    )
+    def test_post_without_id(self, mock_task):
+        response = self.client.post("/api/v1/lobstr/leboncoin/external_properties/")
 
-
-# Test cases
-def test_external_property_create_view_no_run_id(mocked_task, client, url):
-    response = client.post(url, data={"id": ""})
-
-    assert response.status_code == 400
-    assert not response.data
-    assert not mocked_task.called
-
-
-def test_external_property_create_view(mocked_task, client, url):
-    response = client.post(url, data={"id": "1234567890"})
-
-    assert response.status_code == 202
-    assert response.data == {"status": "Job started"}
-    assert mocked_task.called
+        mock_task.assert_not_called()
+        assert response.status_code == 400

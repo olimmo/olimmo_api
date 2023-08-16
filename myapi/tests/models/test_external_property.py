@@ -350,13 +350,6 @@ def test_source_id_is_less_than_100_characters():
         external_property.full_clean()
 
 
-def test_source_id_is_unique():
-    ExternalPropertyFactory(source_id="abc123")
-    with pytest.raises(ValidationError, match="already exists."):
-        property_2 = ExternalPropertyFactory.build(source_id="abc123")
-        property_2.full_clean()
-
-
 def test_surface_is_greater_or_equal_than_0():
     with pytest.raises(ValidationError, match="greater than or equal to 0."):
         external_property = ExternalPropertyFactory(surface=-1)

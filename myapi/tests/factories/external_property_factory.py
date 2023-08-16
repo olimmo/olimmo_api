@@ -28,6 +28,7 @@ class ExternalPropertyFactory(DjangoModelFactory):
     nb_rooms = FuzzyInteger(0, 100)
     outside_access = factory.Faker("word")
     postal_code = factory.Faker("postcode")
+    price = FuzzyInteger(0, 100)
     property_type = FuzzyChoice(["Appartement", "House"])
     region = factory.Faker("state")
     seller_email = factory.Faker("email")

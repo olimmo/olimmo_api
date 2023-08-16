@@ -54,6 +54,10 @@ MIDDLEWARE = [
 
 AUTH_USER_MODEL = "myapi.CustomUser"
 
+REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER": "rest_framework.views.exception_handler",
+}
+
 ROOT_URLCONF = "olimmo.urls"
 
 CELERY_BROKER_URL = "redis://localhost:6379/0"

@@ -1,11 +1,8 @@
-import pytest
-
 from myapi.tests.factories import CustomUserFactory
 
 from myapi.models import CustomUser
 
 
-@pytest.mark.django_db
 def test_custom_user_creation():
     user = CustomUserFactory()
 
