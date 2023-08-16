@@ -1,6 +1,7 @@
 import pytest
-from myapi.models import Property
 from django.core.exceptions import ValidationError
+
+from myapi.models import Property
 from myapi.tests.factories import PropertyFactory, SellerFactory
 
 

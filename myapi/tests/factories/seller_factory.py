@@ -1,8 +1,10 @@
 import factory
+from factory.django import DjangoModelFactory
+
 from myapi.models import Seller
 
 
-class SellerFactory(factory.django.DjangoModelFactory):
+class SellerFactory(DjangoModelFactory):
     class Meta:
         model = Seller
 

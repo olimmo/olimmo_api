@@ -1,10 +1,12 @@
 import factory
-from myapi.models import Property
+from factory.django import DjangoModelFactory
 
 from .seller_factory import SellerFactory
 
+from myapi.models import Property
 
-class PropertyFactory(factory.django.DjangoModelFactory):
+
+class PropertyFactory(DjangoModelFactory):
     class Meta:
         model = Property
 

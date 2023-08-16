@@ -1,10 +1,12 @@
 # factories.py
 import factory
+from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyInteger, FuzzyChoice
+
 from myapi.models import ExternalProperty
 
 
-class ExternalPropertyFactory(factory.django.DjangoModelFactory):
+class ExternalPropertyFactory(DjangoModelFactory):
     class Meta:
         model = ExternalProperty
 

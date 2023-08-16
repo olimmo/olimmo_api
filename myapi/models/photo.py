@@ -24,7 +24,9 @@ class Photo(BaseModel):
     url = models.CharField(validators=[MinLengthValidator(1), URLValidator()])
 
     # Relationships
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(
+        ContentType, on_delete=models.CASCADE, blank=False, null=False
+    )
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type", "object_id")
 
