@@ -9,7 +9,7 @@ from myapi.tasks.lobstr.leboncoin.external_property_create_task import (
 from myapi.models import ExternalProperty, Photo
 
 
-def create_external_property_task(run_id):
+class TestExternalPropertyCreateTask:
     leboncoin_properties = [
         {
             "id": "ce49cda8afad013d3f4391d360844420",
