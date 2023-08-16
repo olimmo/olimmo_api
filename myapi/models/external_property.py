@@ -10,7 +10,6 @@ from django.core.validators import (
 )
 
 from . import BaseModel
-from .photo import Photo
 
 
 class ExternalProperty(BaseModel):
@@ -124,7 +123,7 @@ class ExternalProperty(BaseModel):
     url = models.CharField(validators=[MinLengthValidator(1), URLValidator()])
 
     # Relationships
-    photos = GenericRelation(Photo)
+    photos = GenericRelation("myapi.Photo")
 
     def __str__(self):
         return str(vars(self))

@@ -19,6 +19,12 @@ def test_photo_creation(photo):
     assert photo.object_id is not None
 
 
+def test_content_type_is_not_null():
+    with pytest.raises(ValidationError, match="cannot be null."):
+        user_external_property = PhotoFactory.build(content_type=None)
+        user_external_property.full_clean()
+
+
 def test_position_is_greater_or_equal_to_0():
     with pytest.raises(ValidationError, match="greater than or equal to 1."):
         photo = PhotoFactory(position=-1)

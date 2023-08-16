@@ -1,12 +1,14 @@
 import factory
-from django.contrib.contenttypes.models import ContentType
+from factory.django import DjangoModelFactory
 
-from myapi.models import Photo
+from django.contrib.contenttypes.models import ContentType
 
 from .external_property_factory import ExternalPropertyFactory
 
+from myapi.models import Photo
 
-class PhotoFactory(factory.django.DjangoModelFactory):
+
+class PhotoFactory(DjangoModelFactory):
     class Meta:
         model = Photo
 

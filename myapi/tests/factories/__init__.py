@@ -1,4 +1,6 @@
+from .custom_user_factory import CustomUserFactory
 from .external_property_factory import ExternalPropertyFactory
 from .photo_factory import PhotoFactory
 from .property_factory import PropertyFactory
 from .seller_factory import SellerFactory
+from .user_external_property_factory import UserExternalPropertyFactory
