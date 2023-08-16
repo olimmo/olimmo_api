@@ -109,7 +109,7 @@ class ExternalProperty(BaseModel):
     )
 
     source_id = models.CharField(
-        unique=True, validators=[MinLengthValidator(1)], max_length=100, default=""
+        validators=[MinLengthValidator(1)], max_length=100, default=""
     )
     surface = models.IntegerField(
         default=0,

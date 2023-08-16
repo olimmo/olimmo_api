@@ -1,9 +1,7 @@
-import pytest
 from myapi.models import UserExternalProperty
 from myapi.tests.factories import CustomUserFactory, ExternalPropertyFactory
 
 
-@pytest.mark.django_db
 def test_create_user_external_property_signal():
     # Create a test user
     user = CustomUserFactory()
