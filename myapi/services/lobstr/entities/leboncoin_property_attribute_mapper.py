@@ -10,7 +10,7 @@ class LeBonCoinPropertyAttributeMapper:
             "description": self.leboncoin_property["description"],
             "elevator": self.more_details.get("elevator") == "Oui",
             "energy_rate": self.leboncoin_property["DPE_string"],
-            "first_photo_url": self.more_details.get("profile_picture_url"),
+            "first_photo_url": self.leboncoin_property["pictures"].split("|||")[0],
             "floor_number": self._to_integer(self.more_details.get("floor_number")),
             "gps_latitude": self.leboncoin_property["lat"],
             "gps_longitude": self.leboncoin_property["lng"],
