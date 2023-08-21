@@ -1,4 +1,7 @@
+import os
+
 import requests
+import json
 from decouple import config
 
 
@@ -20,3 +23,17 @@ class LobstrPropertyFetcher:
 
         if res.status_code == 200:
             return res.json()["data"]
+        # to remove
+        else:
+            return self._get_sample_data()
+
+    def _get_sample_data(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(
+            current_dir, "..", "..", "..", "tmp", "lobstr_leboncoin_sample_data.json"
+        )
+
+        with open(file_path, "r") as json_file:
+            data = json.load(json_file)
+
+            return data

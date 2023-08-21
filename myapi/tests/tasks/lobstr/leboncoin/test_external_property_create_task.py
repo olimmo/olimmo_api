@@ -75,7 +75,9 @@ class TestExternalPropertyCreateTask:
                 description=self.leboncoin_properties[0]["description"],
                 elevator=False,
                 energy_rate=self.leboncoin_properties[0]["DPE_string"],
-                first_photo_url=self.leboncoin_properties[0]["pictures"].split('|||')[0],
+                first_photo_url=self.leboncoin_properties[0]["pictures"].split("|||")[
+                    0
+                ],
                 floor_number=self.leboncoin_properties[0]["more_details"][
                     "floor_number"
                 ],

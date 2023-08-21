@@ -56,6 +56,9 @@ AUTH_USER_MODEL = "myapi.CustomUser"
 
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "rest_framework.views.exception_handler",
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
 }
 
 ROOT_URLCONF = "olimmo.urls"
