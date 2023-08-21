@@ -81,7 +81,7 @@ class ExternalProperty(BaseModel):
         ],
     )
     nb_rooms = models.IntegerField(
-        default=0,
+        default=1,
         validators=[
             MinValueValidator(0),
             MaxValueValidator(100),
