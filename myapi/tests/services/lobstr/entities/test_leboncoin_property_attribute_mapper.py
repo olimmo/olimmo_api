@@ -22,7 +22,11 @@ class TestLeBonCoinPropertyAttributeMapper:
             "area": 100,
             "title": "Apartment for sale",
             "url": "http://example.com",
-            "pictures": "https://img.leboncoin.fr/api/v1/lbcpb1/images/c9/1f/16/c91f16bf2ce8515df05f6de50475c429b683657f.jpg?rule=ad-large|||https://img.leboncoin.fr/api/v1/lbcpb1/images/01/ce/5e/01ce5e4e4cb9e6f9d850bb7be00118f99f8784f7.jpg?rule=ad-large|||https://img.leboncoin.fr/api/v1/lbcpb1/images/da/be/17/dabe173e8c33259e74fba3e0dadebb359629bbeb.jpg?rule=ad-large",
+            "pictures": "https://img.leboncoin.fr/api/v1/lbcpb1/images/c9/1f/16/c91f16bf2ce8515df0"
+            "5f6de50475c429b683657f.jpg?rule=ad-large|||https://img.leboncoin.fr/api/v1/lbcpb1/im"
+            "ages/01/ce/5e/01ce5e4e4cb9e6f9d850bb7be00118f99f8784f7.jpg?rule=ad-large|||"
+            "https://img.leboncoin.fr/api/v1/lbcpb1/images/da/be/17/dabe173e8c33259e74fba3e0da"
+            "debb359629bbeb.jpg?rule=ad-large",
             "price": 500000,
             "more_details": {
                 "elevator": "Oui",
@@ -42,7 +46,8 @@ class TestLeBonCoinPropertyAttributeMapper:
             "description": "Nice apartment",
             "elevator": True,
             "energy_rate": "D",
-            "first_photo_url": "https://img.leboncoin.fr/api/v1/lbcpb1/images/c9/1f/16/c91f16bf2ce8515df05f6de50475c429b683657f.jpg?rule=ad-large",
+            "first_photo_url": "https://img.leboncoin.fr/api/v1/lbcpb1/images/c9/1f/16/c91f16bf2c"
+            "e8515df05f6de50475c429b683657f.jpg?rule=ad-large",
             "floor_number": 2,
             "gps_latitude": "48.8566",
             "gps_longitude": "2.3522",

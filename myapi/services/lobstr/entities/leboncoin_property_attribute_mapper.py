@@ -9,7 +9,7 @@ class LeBonCoinPropertyAttributeMapper:
             "city": self.leboncoin_property["department"],
             "description": self.leboncoin_property["description"],
             "elevator": self.more_details.get("elevator") == "Oui",
-            "energy_rate": self.leboncoin_property["DPE_string"],
+            "energy_rate": self._energy_rate(self.leboncoin_property),
             "first_photo_url": self.leboncoin_property["pictures"].split("|||")[0],
             "floor_number": self._to_integer(self.more_details.get("floor_number")),
             "gps_latitude": self.leboncoin_property["lat"],
@@ -41,7 +41,12 @@ class LeBonCoinPropertyAttributeMapper:
     @staticmethod
     def _greenhouse_gas(leboncoin_property):
         ges_string = leboncoin_property["GES_string"]
-        return ges_string if ges_string != "Vierge" else None
+        return ges_string if ges_string not in ["Vierge", "Non renseigné"] else None
+
+    @staticmethod
+    def _energy_rate(leboncoin_property):
+        dpe_string = leboncoin_property["DPE_string"]
+        return dpe_string if dpe_string not in ["Vierge", "Non renseigné"] else None
 
     @staticmethod
     def _to_integer(value):
