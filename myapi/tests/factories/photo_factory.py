@@ -13,7 +13,7 @@ class PhotoFactory(DjangoModelFactory):
         model = Photo
 
     position = factory.Faker("random_int", min=0, max=1000)
-    url = factory.Sequence(lambda n: f"https://www.{n}.com")
+    url = factory.Sequence(lambda n: f"https://picsum.photos/id/{n}/200/300")
 
     content_type = factory.LazyAttribute(
         lambda o: ContentType.objects.get_for_model(o.content_object)

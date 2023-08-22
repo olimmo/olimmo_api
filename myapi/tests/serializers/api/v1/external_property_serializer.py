@@ -19,6 +19,9 @@ class TestExternalPropertySerializer:
             "title": external_property.title,
             "surface": external_property.surface,
             "city": external_property.city,
+            "created_at": external_property.created_at.strftime(
+                "%Y-%m-%dT%H:%M:%S.%fZ"
+            ),
             "currency": external_property.currency,
             "description": external_property.description,
             "elevator": external_property.elevator,
@@ -42,6 +45,9 @@ class TestExternalPropertySerializer:
             "seller_phone": external_property.seller_phone,
             "source": external_property.source,
             "source_id": external_property.source_id,
+            "updated_at": external_property.updated_at.strftime(
+                "%Y-%m-%dT%H:%M:%S.%fZ"
+            ),
             "url": external_property.url,
         }
 
