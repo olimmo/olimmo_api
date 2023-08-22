@@ -1,5 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+
+from myapi.models import UserExternalProperty
 from myapi.filters.api.v1.user.user_external_property_filter import (
     UserExternalPropertyFilter,
 )
@@ -7,9 +9,8 @@ from myapi.serializers.api.v1.user.user_external_property_serializer import (
     UserExternalPropertyRetrieveSerializer,
     UserExternalPropertyUpdateSerializer,
 )
-from .mixins import UserAuthenticationMixin
 
-from myapi.models import UserExternalProperty
+from .mixins import UserAuthenticationMixin
 
 
 class UserExternalPropertyViewSet(UserAuthenticationMixin, viewsets.ModelViewSet):
