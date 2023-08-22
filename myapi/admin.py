@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Property, Seller
+from .models import ExternalProperty
 
-admin.site.register(Property)
-admin.site.register(Seller)
+admin.site.register(ExternalProperty)
