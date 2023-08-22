@@ -31,15 +31,16 @@ def create_custom_users():
 
 def create_external_property():
     external_property = ExternalPropertyFactory()
-    
+
     num_photos = random.randint(3, 6)
     for _ in range(num_photos):
         create_photo(external_property)
 
+
 def create_photo(external_property):
-    photo = PhotoFactory(content_object=external_property)
-    
-    
+    PhotoFactory(content_object=external_property)
+
+
 def run_seed(self, mode):
     clear_data()
     if mode == MODE_CLEAR:
