@@ -26,7 +26,7 @@ class TestLobstrPropertyFetcher:
         mock_request.get(url, status_code=400)
         fetcher = LobstrPropertyFetcher("run_id")
         result = fetcher.get_properties()
-        assert result[0]["id"] == 14905717
+        assert result is None
 
     def test_get_properties_success(self, mock_request, url):
         mock_request.get(url, status_code=200, json={"data": "test_data"})
