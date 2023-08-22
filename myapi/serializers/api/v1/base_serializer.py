@@ -17,7 +17,7 @@ class BaseSerializer(serializers.ModelSerializer):
         return []  # No included fields by default
 
     def remove_unincluded_fields(self, representation, included_field_names):
-        possible_included_fields = getattr(self.Meta, 'include_fields', [])
+        possible_included_fields = getattr(self.Meta, "include_fields", [])
 
         for field_name in possible_included_fields:
             if field_name not in included_field_names:

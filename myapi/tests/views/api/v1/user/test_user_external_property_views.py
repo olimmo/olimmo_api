@@ -47,6 +47,87 @@ class TestUserExternalPropertyViewSet:
         assert len(response.json()) == 1
         assert response.json()[0]["state"] == "contacted"
 
+    def test_list_ordered_by_created_at_asc(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(self.base_url, {"order_by": "created_at"})
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.json()) == 2
+        assert response.json()[0]["created_at"] < response.json()[1]["created_at"]
+
+    def test_list_ordered_by_created_at_desc(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(self.base_url, {"order_by": "-created_at"})
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.json()) == 2
+        assert response.json()[0]["created_at"] > response.json()[1]["created_at"]
+
+    def test_list_ordered_by_a_wrong_attribute(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(self.base_url, {"order_by": "-id"})
+
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    def test_list_with_included_relationships(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(self.base_url, {"included": "external_property"})
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.json()) == 2
+        assert response.json()[0]["external_property"] is not None
+
+    def test_list_with_wrong_included_relationships(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(self.base_url, {"included": "wrong_relation"})
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.json()) == 2
+        assert response.json()[0] is not None
+        assert "wrong_attribute" not in response.json()[0]
+
+    def test_list_with_nested_relationships(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(
+            self.base_url, {"included": "external_property,photos"}
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.json()) == 2
+        assert response.json()[0]["external_property"]["photos"] is not None
+
+    def test_list_with_wrong_nested_relationships(
+        self, api_client, user, external_properties
+    ):
+        UserExternalProperty.objects.all().update(user=user)
+        api_client.credentials(HTTP_UID=user.email)
+        response = api_client.get(
+            self.base_url, {"included": "external_property,wrong_relation"}
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.json()) == 2
+        assert response.json()[0]["external_property"] is not None
+        assert "wrong_attribute" not in response.json()[0]["external_property"]
+
     def test_missing_uid_header(self, api_client):
         response = api_client.get(self.base_url)
         assert response.status_code == status.HTTP_400_BAD_REQUEST
