@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from myapi.models import UserExternalProperty
-from myapi.serializers.api.v1 import BaseSerializer
+from myapi.serializers.api.v1.base_serializer import BaseSerializer
 from myapi.serializers.api.v1.external_property_serializer import (
     ExternalPropertySerializer,
 )
