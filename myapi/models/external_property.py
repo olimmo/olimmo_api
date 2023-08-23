@@ -24,19 +24,19 @@ class ExternalProperty(BaseModel):
     ]
     CURRENCY_CHOICES = [("EUR", "Euro"), ("USD", "US Dollar")]
     PROPERTY_TYPE_CHOICES = [("Appartement", "Appartement"), ("House", "House")]
-    SOURCE_CHOICES = [("Leboncoin", "Leboncoin"), ("PAP", "PAP")]
+    SOURCE_CHOICES = [("Leboncoin", "Leboncoin"), ("pap", "PAP")]
 
     city = models.CharField(validators=[MinLengthValidator(1)])
     currency = models.CharField(
         max_length=3, choices=CURRENCY_CHOICES, validators=[MinLengthValidator(1)]
     )
     description = models.TextField(validators=[MinLengthValidator(1)])
-    elevator = models.BooleanField(default=False)
+    elevator = models.BooleanField(default=False, null=True, blank=True)
     energy_rate = models.CharField(
         null=True, blank=True, max_length=1, choices=ENERGY_LETTER_CHOICES
     )
     first_photo_url = models.CharField(
-        validators=[MinLengthValidator(1), URLValidator()], default=""
+        null=True, blank=True, validators=[URLValidator()], default=""
     )
     floor_number = models.IntegerField(
         null=True,
@@ -72,7 +72,6 @@ class ExternalProperty(BaseModel):
         ],
     )
     nb_parkings = models.IntegerField(
-        default=0,
         null=True,
         blank=True,
         validators=[
@@ -81,7 +80,8 @@ class ExternalProperty(BaseModel):
         ],
     )
     nb_rooms = models.IntegerField(
-        default=1,
+        null=True,
+        blank=True,
         validators=[
             MinValueValidator(0),
             MaxValueValidator(100),
@@ -96,11 +96,11 @@ class ExternalProperty(BaseModel):
 
     property_type = models.CharField(
         choices=PROPERTY_TYPE_CHOICES,
-        default="Appartment",
+        default="Appartement",
         validators=[MinLengthValidator(1)],
     )
 
-    region = models.CharField(validators=[MinLengthValidator(1)])
+    region = models.CharField(null=True, blank=True)
     seller_phone = models.CharField(null=True, blank=True)
     seller_name = models.CharField(null=True, blank=True)
     seller_email = models.EmailField(null=True, blank=True)

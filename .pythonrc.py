@@ -12,7 +12,7 @@ print("Welcome to Python!")
 
 qq = exit
 
-maison = Property.objects.last()
+maison = ExternalProperty.objects.last()
 
 
 # pluck(Property.objects.all(), 'title')

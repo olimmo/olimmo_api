@@ -36,6 +36,6 @@ class ExternalPropertyFactory(DjangoModelFactory):
     seller_email = factory.Faker("email")
     seller_name = factory.Faker("word")
     seller_phone = factory.Faker("phone_number")
-    source = FuzzyChoice(["Leboncoin", "PAP"])
+    source = FuzzyChoice(["Leboncoin", "pap"])
     source_id = factory.Sequence(lambda n: f"Source {n}")
     url = factory.Sequence(lambda n: f"https://www.{n}.com")

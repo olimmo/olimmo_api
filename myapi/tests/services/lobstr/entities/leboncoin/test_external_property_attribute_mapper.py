@@ -1,9 +1,9 @@
-from myapi.services.lobstr.entities.leboncoin_property_attribute_mapper import (
-    LeBonCoinPropertyAttributeMapper,
+from myapi.services.lobstr.entities.leboncoin.external_property_attribute_mapper import (
+    ExternalPropertyAttributeMapper,
 )
 
 
-class TestLeBonCoinPropertyAttributeMapper:
+class TestExternalPropertyAttributeMapper:
     def test_map_attributes(self):
         leboncoin_property = {
             "currency": "EUR",
@@ -71,5 +71,5 @@ class TestLeBonCoinPropertyAttributeMapper:
             "url": "http://example.com",
         }
 
-        mapper = LeBonCoinPropertyAttributeMapper(leboncoin_property)
+        mapper = ExternalPropertyAttributeMapper(leboncoin_property)
         assert mapper.map_attributes() == expected_result
