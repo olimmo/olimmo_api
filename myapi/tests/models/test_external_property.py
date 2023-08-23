@@ -80,16 +80,16 @@ def test_energy_rate_can_be_blank():
     assert ExternalProperty.objects.count() == 1
 
 
-def test_first_photo_url_is_not_blank():
-    with pytest.raises(ValidationError, match="cannot be blank."):
-        external_property = ExternalPropertyFactory(first_photo_url="")
-        external_property.full_clean()
+def test_first_photo_url_can_be_none():
+    external_property = ExternalPropertyFactory.build(first_photo_url=None)
+    external_property.clean_and_save()
+    assert ExternalProperty.objects.count() == 1
 
 
-def test_first_photo_url_is_not_null():
-    with pytest.raises(ValidationError, match="cannot be null."):
-        external_property = ExternalPropertyFactory.build(first_photo_url=None)
-        external_property.full_clean()
+def test_first_photo_url_can_be_blank():
+    external_property = ExternalPropertyFactory.build(first_photo_url="")
+    external_property.clean_and_save()
+    assert ExternalProperty.objects.count() == 1
 
 
 def test_first_photo_url_is_a_url_format():
@@ -230,16 +230,16 @@ def test_nb_rooms_is_greater_or_equal_than_0():
         external_property.full_clean()
 
 
-def test_nb_rooms_is_not_null():
-    with pytest.raises(ValidationError, match="cannot be null."):
-        external_property = ExternalPropertyFactory.build(nb_rooms=None)
-        external_property.full_clean()
-
-
 def test_nb_rooms_is_less_than_100():
     with pytest.raises(ValidationError, match="less than or equal to 100."):
         external_property = ExternalPropertyFactory(nb_rooms=101)
         external_property.full_clean()
+
+
+def test_nb_rooms_can_be_none():
+    external_property = ExternalPropertyFactory.build(nb_rooms=None)
+    external_property.clean_and_save()
+    assert ExternalProperty.objects.count() == 1
 
 
 def test_outside_access_can_be_none():
@@ -284,10 +284,10 @@ def test_property_type_inclusion():
         external_property.full_clean()
 
 
-def test_region_is_not_blank():
-    with pytest.raises(ValidationError, match="cannot be blank."):
-        external_property = ExternalPropertyFactory(region="")
-        external_property.full_clean()
+def test_region_can_be_blank():
+    external_property = ExternalPropertyFactory.build(region=None)
+    external_property.clean_and_save()
+    assert ExternalProperty.objects.count() == 1
 
 
 def test_seller_phone_can_be_blank():

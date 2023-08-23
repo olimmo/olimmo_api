@@ -1,7 +1,8 @@
+import random
 from django.core.management.base import BaseCommand
+
 from myapi.models import ExternalProperty, CustomUser
 from myapi.tests.factories import ExternalPropertyFactory, PhotoFactory
-import random
 
 MODE_REFRESH = "refresh"
 MODE_CLEAR = "clear"
