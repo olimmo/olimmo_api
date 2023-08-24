@@ -344,6 +344,13 @@ def test_source_id_is_not_null():
         external_property.full_clean()
 
 
+def test_source_id_is_unique():
+    ExternalPropertyFactory(source_id="123456")
+    with pytest.raises(ValidationError, match="with this Source id already exists."):
+        external_property = ExternalPropertyFactory.build(source_id="123456")
+        external_property.full_clean()
+
+
 def test_source_id_is_less_than_100_characters():
     with pytest.raises(ValidationError, match="has at most 100 characters"):
         external_property = ExternalPropertyFactory.build(source_id="1" * 101)

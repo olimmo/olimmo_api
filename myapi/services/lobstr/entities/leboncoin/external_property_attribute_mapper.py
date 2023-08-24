@@ -35,7 +35,7 @@ class ExternalPropertyAttributeMapper:
             "seller_email": self.lobstr_property["mail"],
             "seller_name": self.lobstr_property["owner_name"],
             "seller_phone": self.lobstr_property["phone"],
-            "source": "Leboncoin",
+            "source": "leboncoin",
             "source_id": self.lobstr_property["annonce_id"],
             "surface": self.lobstr_property["area"],
             "title": self.lobstr_property["title"],

@@ -19,7 +19,7 @@ qq = exit
 maison = ExternalProperty.objects.last()
 
 
-# pluck(Property.objects.all(), 'title')
+# pluck(ExternalProperty.objects.all(), 'title')
 def pluck(objects, attribute):
     return list(map(lambda obj: getattr(obj, attribute), objects))
 

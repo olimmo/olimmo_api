@@ -64,7 +64,7 @@ class TestExternalPropertyAttributeMapper:
             "seller_email": "test@example.com",
             "seller_name": "Owner",
             "seller_phone": "0123456789",
-            "source": "Leboncoin",
+            "source": "leboncoin",
             "source_id": "12345",
             "surface": 100,
             "title": "Apartment for sale",
