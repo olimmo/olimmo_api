@@ -8,6 +8,8 @@ from django.core.validators import (
     MinValueValidator,
     URLValidator,
 )
+from auditlog.registry import auditlog
+from auditlog.models import AuditlogHistoryField
 
 from . import BaseModel
 
@@ -55,6 +57,7 @@ class ExternalProperty(BaseModel):
     greenhouse_gas = models.CharField(
         null=True, blank=True, max_length=1, choices=ENERGY_LETTER_CHOICES
     )
+    history = AuditlogHistoryField()
     nb_bedrooms = models.IntegerField(
         null=True,
         blank=True,
@@ -127,3 +130,6 @@ class ExternalProperty(BaseModel):
 
     def __str__(self):
         return str(vars(self))
+
+
+auditlog.register(ExternalProperty, include_fields=["price"])
