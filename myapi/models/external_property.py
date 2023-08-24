@@ -26,7 +26,7 @@ class ExternalProperty(BaseModel):
     ]
     CURRENCY_CHOICES = [("EUR", "Euro"), ("USD", "US Dollar")]
     PROPERTY_TYPE_CHOICES = [("Appartement", "Appartement"), ("House", "House")]
-    SOURCE_CHOICES = [("Leboncoin", "Leboncoin"), ("pap", "PAP")]
+    SOURCE_CHOICES = [("leboncoin", "Leboncoin"), ("pap", "PAP")]
 
     city = models.CharField(validators=[MinLengthValidator(1)])
     currency = models.CharField(
@@ -108,11 +108,11 @@ class ExternalProperty(BaseModel):
     seller_name = models.CharField(null=True, blank=True)
     seller_email = models.EmailField(null=True, blank=True)
     source = models.CharField(
-        validators=[MinLengthValidator(1)], choices=SOURCE_CHOICES, default="Leboncoin"
+        validators=[MinLengthValidator(1)], choices=SOURCE_CHOICES, default="leboncoin"
     )
 
     source_id = models.CharField(
-        validators=[MinLengthValidator(1)], max_length=100, default=""
+        validators=[MinLengthValidator(1)], max_length=100, unique=True
     )
     surface = models.IntegerField(
         default=0,

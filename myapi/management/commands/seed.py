@@ -1,7 +1,7 @@
 import random
 from django.core.management.base import BaseCommand
 
-from myapi.models import ExternalProperty, CustomUser
+from myapi.models import CustomUser, ExternalProperty, Photo
 from myapi.tests.factories import ExternalPropertyFactory, PhotoFactory
 
 MODE_REFRESH = "refresh"
@@ -23,6 +23,7 @@ class Command(BaseCommand):
 def clear_data():
     CustomUser.objects.all().delete()
     ExternalProperty.objects.all().delete()
+    Photo.objects.all().delete()
 
 
 def create_custom_users():
