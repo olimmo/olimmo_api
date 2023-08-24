@@ -22,3 +22,18 @@ class BaseSerializer(serializers.ModelSerializer):
         for field_name in possible_included_fields:
             if field_name not in included_field_names:
                 representation.pop(field_name, None)
+
+    def get_audits(self, obj):
+        audits = []
+
+        for log_entry in obj.history.all():
+            changes = log_entry.changes_dict
+            for field, (old, new) in changes.items():
+                change_details = {
+                    "field": field,
+                    "new_value": new,
+                    "date": log_entry.timestamp,
+                }
+                audits.append(change_details)
+
+        return audits

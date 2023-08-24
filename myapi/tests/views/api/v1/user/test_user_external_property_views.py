@@ -107,12 +107,13 @@ class TestUserExternalPropertyViewSet:
         UserExternalProperty.objects.all().update(user=user)
         api_client.credentials(HTTP_UID=user.email)
         response = api_client.get(
-            self.base_url, {"included": "external_property,photos"}
+            self.base_url, {"included": "external_property,photos,audits"}
         )
 
         assert response.status_code == status.HTTP_200_OK
         assert len(response.json()) == 2
         assert response.json()[0]["external_property"]["photos"] is not None
+        assert response.json()[0]["external_property"]["audits"] is not None
 
     def test_list_with_wrong_nested_relationships(
         self, api_client, user, external_properties
